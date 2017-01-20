@@ -3,9 +3,9 @@ Chaos Guns - rogue
 
 *Reimagination of original Chaos Guns game*
 
-Developement of [http://www.chaosguns.com](Chaos Guns) game began in 2013 for Amiga.
+Developement of [Chaos Guns](http://www.chaosguns.com) game began in 2013 for Amiga.
 In the meantime, we decided to reimagine world of Chaos Guns in form of roguelike game, playable on any web enabled device.
-We use [https://github.com/ondras/rot.js](rot.js) library.
+We use [rot.js](https://github.com/ondras/rot.js) library.
 
 Planned features
 ----------------
