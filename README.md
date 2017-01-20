@@ -1,16 +1,18 @@
-Goldfish
-========
+Chaos Guns - rogue
+==================
 
-*Making the world a better place, one wish at a time*
+*Reimagination of original Chaos Guns game*
 
-![Screenshot](screenshot.png)
+Developement of [http://www.chaosguns.com](Chaos Guns) game began in 2013 for Amiga.
+In the meantime, we decided to reimagine world of Chaos Guns in form of roguelike game, playable on any web enabled device.
+We use [https://github.com/ondras/rot.js](rot.js) library.
 
-Development log
----------------
-  - Sunday evening: base files, level shape generation, fov
-  - Monday: stats, status, oxygen, cells
-  - Tuesday: items, slots, inventory
-  - Wednesday: fishermen and their rods, quest items, quests, chats, basic enemies
-  - Thursday: AI, more enemies, level inhabitants
-  - Friday: help, intro, fixing, balancing, release
-# chaosguns-rogue
+Planned features
+----------------
+  - multicharacter party (2 - 4), which you can switch during gameplay
+  - 12 characters to choose from with different skills and story
+  - light-weight RPG elements
+  - map imported from real environment
+  - a hub world with 7 manually crafted levels
+  - random optional dungeons to visit
+  - long range weapons
