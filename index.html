@@ -1,65 +1,48 @@
 <!doctype html>
 <html>
 	<head>
-		<meta charset="utf-8" />
 		<title>Chaos Guns &ndash; rogue</title>
-		<script type="text/javascript" src="js/promise.js"></script>
-		<script type="text/javascript" src="js/rot.min.js"></script>
-		<script type="text/javascript" src="js/xy.js"></script>
-		<script type="text/javascript" src="js/game.js"></script>
-		<script type="text/javascript" src="js/rules.js"></script>
-		<script type="text/javascript" src="js/status.js"></script>
-		<script type="text/javascript" src="js/entity.js"></script>
-		<script type="text/javascript" src="js/stats.js"></script>
-		<script type="text/javascript" src="js/cell.js"></script>
-		<script type="text/javascript" src="js/cell.seaweed.js"></script>
-		<script type="text/javascript" src="js/cell.staircase.js"></script>
-		<script type="text/javascript" src="js/cell.bubble.js"></script>
-		<script type="text/javascript" src="js/cell.rod.js"></script>
-		<script type="text/javascript" src="js/item.js"></script>
-		<script type="text/javascript" src="js/item.stat.js"></script>
-		<script type="text/javascript" src="js/item.quest.js"></script>
-		<script type="text/javascript" src="js/slot.js"></script>
-		<script type="text/javascript" src="js/being.js"></script>
-		<script type="text/javascript" src="js/being.fisher.js"></script>
-		<script type="text/javascript" src="js/being.enemy.js"></script>
-		<script type="text/javascript" src="js/enemies.js"></script>
-		<script type="text/javascript" src="js/player.js"></script>
-		<script type="text/javascript" src="js/inventory.js"></script>
-		<script type="text/javascript" src="js/inventory.slot.js"></script>
-		<script type="text/javascript" src="js/level.js"></script>
-		<script type="text/javascript" src="js/level.cavern.js"></script>
-		<script type="text/javascript" src="js/level.overview.js"></script>
-		<script type="text/javascript" src="js/textbuffer.js"></script>
-		<script type="text/javascript" src="js/progress.js"></script>
-		<script type="text/javascript" src="js/quests.js"></script>
-		<script type="text/javascript" src="js/help.js"></script>
+		<!-- TODO favicon -->
+		<!--<link rel="shortcut icon" href="favicon.png" />
+			<link rel="icon" sizes="128x128" href="icon.png">
+			<link rel="apple-touch-icon" sizes="128x128" href="icon.png">-->
 		<link rel="stylesheet" href="style.css" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<!-- TODO PWA support -->
+		<!--<link rel="manifest" href="manifest.json">
+			<meta name="mobile-web-app-capable" content="yes">
+			<meta name="apple-mobile-web-app-capable" content="yes">
+			<meta name="apple-mobile-web-app-status-bar-style" content="black">
+			<meta name="theme-color" content="#111111">-->
 	</head>
 	<body>
 		<pre class="center">
-<a href="http://www.hernisnob.cz/">Dave de Sade</a> and <a href="http://ondras.github.com/rot.js/">rot.js</a> proudly present
-</pre>
+			<a href="http://www.hernisnob.cz/">Dave de Sade</a> and <a href="http://ondras.github.com/rot.js/">rot.js</a> proudly present
+		</pre>
 		<pre class="gold">
 
-_________ .__                            ________
-\_   ___ \|  |__ _____    ____  ______  /  _____/ __ __  ____   ______
-/    \  \/|  |  \\__  \  /  _ \/  ___/ /   \  ___|  |  \/    \ /  ___/
-\     \___|   Y  \/ __ \(  |_| )___ \  \    \_\  \  |  /   |  \\___ \
- \______  /___|  (____  /\____/____  >  \______  /____/|___|  /____  >
-        \/     \/     \/           \/          \/           \/     \/
+	_________ .__                            ________
+	\_   ___ \|  |__ _____    ____  ______  /  _____/ __ __  ____   ______
+	/    \  \/|  |  \\__  \  /  _ \/  ___/ /   \  ___|  |  \/    \ /  ___/
+	\     \___|   Y  \/ __ \(  |_| )___ \  \    \_\  \  |  /   |  \\___ \
+	\______  /___|  (____  /\____/____  >  \______  /____/|___|  /____  >
+			\/     \/     \/           \/          \/           \/     \/
 
-                                   _______  ____   ____  __ __   ____
-                                   \_  __ \/  _ \ / ___\|  |  \_/ __ \
-                                    |  | \(  |_| ) /_/  >  |  /\  ___/
-                                    |__|   \____/\___  /|____/  \___  >
-                                                /_____/             \/
+									_______  ____   ____  __ __   ____
+									\_  __ \/  _ \ / ___\|  |  \_/ __ \
+										|  | \(  |_| ) /_/  >  |  /\  ___/
+										|__|   \____/\___  /|____/  \___  >
+													/_____/             \/
 
 
-		</pre>
-
-<pre class="blink">
-Press any key to continue...</pre>
-		<script>Game.init();</script>
+			</pre>
+		<pre class="blink">Press any key to continue...</pre>
+		<script>
+			Game.init();
+		</script>
+		<!-- TODO maybe promises will be needed -->
+		<!--<script type="text/javascript" src="js/promise.js"></script>-->
+		<script type="text/javascript" src="js/rot.min.js"></script>
 	</body>
 </html>
