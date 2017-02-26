@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "rot-js": "0.6.2"
+  },
+  "devDependencies": {
+    "webpack": "2.2.1"
+  }
+}
