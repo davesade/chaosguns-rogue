@@ -8,7 +8,8 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: '[name].bundle.js'
+        filename: '[name].bundle.js',
+        publicPath: './dist/'
     },
     module: {
         rules: [
@@ -26,5 +27,10 @@ module.exports = {
             },
             // Loaders for other file types can go here
         ]
+    },
+    devServer: {
+      // contentBase: path.join(__dirname, "./dist"),
+      contentBase: './dist',
+      stats: 'minimal'
     }
 };

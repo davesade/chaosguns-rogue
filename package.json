@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "start": "webpack-dev-server --hot --inline --host 0.0.0.0 --port 8080 --progress --colors --watch-content-base",
+    "serve": "webpack-dev-server --hot --inline --host 0.0.0.0 --port 8080 --progress --colors"
+  },
   "dependencies": {
     "rot-js": "0.6.2"
   },
@@ -6,6 +10,7 @@
     "babel-core": "6.23.1",
     "babel-loader": "6.3.2",
     "babel-preset-es2015": "6.22.0",
-    "webpack": "2.2.1"
+    "webpack": "2.2.1",
+    "webpack-dev-server": "^2.4.2"
   }
 }
