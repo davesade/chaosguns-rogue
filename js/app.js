@@ -1,32 +1,48 @@
 import ROT from 'rot-js';
 var CONFIG = {
 	// tileSize: 16,
-  tileSize: 26,
+  tileSize: 32,
 	// Not really correct/reliable, but detecting touch screen is currently impossible
 	touch: (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
 };
 
-var Player = function(x, y) {
-    this._x = x;
-    this._y = y;
-    this._draw();
-}
+var tileSet = document.createElement("img");
+tileSet.src = "assets/tileset.png";
 
-Player.prototype._draw = function() {
-    Game.display.draw(this._x, this._y, "@", "#ff0");
-}
+var TILES = {
+	empty: {
+    tileCoords: [ 0, 0 ],
+		walkable: true,
+		desc: "Nothing"
+	},
+	wall: {
+    tileCoords: [ 2, 5 ],
+		walkable: false,
+		desc: "Wall"
+	},
+  tileSet: tileSet,
+  tileArray: []
+};
 
-function getTile() {
-
+function prepareTiles() {
+	for (var i in TILES) {
+		var tile = TILES[i];
+		if (!tile.tileCoords) continue;
+		tile.id = i;
+		// tile.ch = TILES.tileArray.length;
+		tile.tileCoords[0] *= CONFIG.tileSize;
+		tile.tileCoords[1] *= CONFIG.tileSize;
+		TILES.tileArray.push(tile);
+	}
 }
+prepareTiles();
 
 var Game = {
     display: null,
     player: null,
 
     init: function() {
-      var w = 30, h = 30;
-
+      var w = 10, h = 10;
       var Game = this;
       var dm = new ROT.Map.DividedMaze(w, h);
       // var dm = ROT.Map.Arena(w, h);
@@ -37,12 +53,17 @@ var Game = {
         layout: "tile",
         fontSize: CONFIG.tileSize,
         tileWidth: CONFIG.tileSize,
-        tileHeight: CONFIG.tileSize
+        tileHeight: CONFIG.tileSize,
+    		tileSet: TILES.tileSet
       });
 
       this.display.getContainer().addEventListener("click", function(event) {
-        debugger;
         console.log('event', event);
+        console.log('Game.display', Game.display);
+        // var tile = getTile(event.x, event.y, CONFIG.tileSize);
+        drawTile(Math.floor(event.x / CONFIG.tileSize) * CONFIG.tileSize, Math.floor(event.y / CONFIG.tileSize) * CONFIG.tileSize, 0, Game);
+        debugger;
+        // Game.display.draw(event.x, event.y, 'o', '#ef16cc', '#ef16ff');
       }, true);
 
       document.body.appendChild(this.display.getContainer());
@@ -58,6 +79,39 @@ var Game = {
         var y = parseInt(parts[1]);
         this.player = new Player(x, y);
     }
+}
+
+function drawTile(x, y, ch, Game) {
+  // TODO move this
+  var w = display.getOptions().width;
+  var h = display.getOptions().height;
+  var tw = display.getOptions().tileWidth;
+  var th = display.getOptions().tileHeight;
+
+  var tileCoords = TILES.tileArray[ch].tileCoords;
+  debugger;
+  Game.display._context.drawImage(
+    display._options.tileSet,
+    tileCoords[0], tileCoords[1], tw, th,
+    x, y, tw, th
+  );
+}
+
+var Player = function(x, y) {
+    this._x = x;
+    this._y = y;
+    this._draw();
+}
+
+Player.prototype._draw = function() {
+    Game.display.draw(this._x, this._y, "@", "#ff0");
+}
+
+function getTile(x, y, tileSize) {
+  return {
+    x: Math.floor(x / tileSize),
+    y: Math.floor(y / tileSize),
+  };
 }
 
 window.onload = Game.init;
