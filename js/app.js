@@ -58,16 +58,22 @@ var Game = {
       });
 
       this.display.getContainer().addEventListener("click", function(event) {
-        console.log('event', event);
-        console.log('Game.display', Game.display);
+        console.log('event', event.x, event.y);
+        console.log('Game.display.eventToPosition', Game.display.eventToPosition(event));
+        // var tileCoordinates =  Game.display.eventToPosition(event);
         // var tile = getTile(event.x, event.y, CONFIG.tileSize);
         drawTile(Math.floor(event.x / CONFIG.tileSize) * CONFIG.tileSize, Math.floor(event.y / CONFIG.tileSize) * CONFIG.tileSize, 0, Game);
-        debugger;
+        // drawTile(0, 0, 0, Game);
+        // drawTile(63, 0, 0, Game);
+        // drawTile(31, 31, 0, Game);
+
+        // drawTile(150, 26, 1, Game);
         // Game.display.draw(event.x, event.y, 'o', '#ef16cc', '#ef16ff');
+        drawMap(Game, CONFIG.tileSize);
       }, true);
 
       document.body.appendChild(this.display.getContainer());
-      dm.create(display.DEBUG);
+      // dm.create(display.DEBUG);
       // this._createPlayer(freeCells);
     },
 
@@ -79,6 +85,16 @@ var Game = {
         var y = parseInt(parts[1]);
         this.player = new Player(x, y);
     }
+}
+
+function drawMap (Game, tileSize) { //draw original map
+	for (var i = 0; i < 10; i++) {
+		for (var j = 0; j < 10; j++) {
+      if(i === j) {
+        drawTile(i * tileSize, j * tileSize, 1, Game);
+      }
+    }
+	}
 }
 
 function drawTile(x, y, ch, Game) {
