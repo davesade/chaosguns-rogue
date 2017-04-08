@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
     context: path.resolve(__dirname),
     entry: {
-        app: './js/app.js'
+        game: './js/game.js'
     },
     output: {
         path: path.resolve(__dirname, './dist'),
