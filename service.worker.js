@@ -2,7 +2,7 @@ var CACHE_NAME = 'chaosguns-cache';
 
 var resourcesToCache = [
     '/',
-    '/dist/app.bundle.js'
+    '/dist/game.bundle.js'
 ];
 
 self.addEventListener('install', function(event) {
