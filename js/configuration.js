@@ -5,6 +5,9 @@ export const CONFIG = {
 	touch: (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
 };
 
+export const MAP_WIDTH = 10;
+export const MAP_HEIGHT = 10;
+
 // TODO refactor this
 var tileSet = document.createElement("img");
 tileSet.src = "assets/tileset.png";

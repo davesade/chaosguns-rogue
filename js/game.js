@@ -1,6 +1,6 @@
 import ROT from 'rot-js';
 
-import { CONFIG, TILES } from './configuration.js';
+import { CONFIG, TILES, MAP_WIDTH, MAP_HEIGHT } from './configuration.js';
 import { drawMap } from './map.js';
 import { player } from './player.js';
 
@@ -9,14 +9,11 @@ export var Game = {
     player: null,
 
     init: function() {
-      var w = 10, h = 10;
       var Game = this;
-      var dm = new ROT.Map.DividedMaze(w, h);
-      // var dm = ROT.Map.Arena(w, h);
 
       this.display = new ROT.Display({
-        width: w,
-        height: h,
+        width: MAP_WIDTH,
+        height: MAP_HEIGHT,
         layout: "tile",
         fontSize: CONFIG.tileSize,
         tileWidth: CONFIG.tileSize,
