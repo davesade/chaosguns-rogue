@@ -10,7 +10,7 @@ export const MAP_HEIGHT = 10;
 
 // TODO refactor this
 var tileSet = document.createElement("img");
-tileSet.src = "assets/tileset.png";
+tileSet.src = "../assets/pap_tileset.gif";
 
 export const TILES = {
 	empty: {
@@ -19,7 +19,7 @@ export const TILES = {
 		desc: "Nothing"
 	},
 	wall: {
-    tileCoords: [ 2, 5 ],
+    tileCoords: [ 0, 13 ],
 		walkable: false,
 		desc: "Wall"
 	},

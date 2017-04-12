@@ -1,4 +1,4 @@
-
+import { CONFIG, TILES } from './configuration.js';
 
 function prepareTiles() {
 	for (var i in TILES) {
@@ -14,10 +14,20 @@ function prepareTiles() {
 prepareTiles();
 
 export function drawMap (Game, tileSize) { //draw original map
-	for (var i = 0; i < 10; i++) {
-		for (var j = 0; j < 10; j++) {
-      if(i === j) {
-        drawTile(i * tileSize, j * tileSize, 1, Game);
+	for (let x = 0; x < 10; x++) {
+		drawTile(x * tileSize, 0, 1, Game);
+		drawTile(x * tileSize, 9 * tileSize, 1, Game);
+	}
+
+	for (let y = 0; y < 10; y++) {
+		drawTile(0, y * tileSize, 1, Game);
+		drawTile(9 * tileSize, y * tileSize, 1, Game);
+	}
+
+	for (let x = 0; x < 10; x++) {
+		for (let y = 0; y < 10; y++) {
+      if(x === y) {
+        drawTile(x * tileSize, y * tileSize, 1, Game);
       }
     }
 	}
@@ -31,7 +41,6 @@ function drawTile(x, y, ch, Game) {
   var th = display.getOptions().tileHeight;
 
   var tileCoords = TILES.tileArray[ch].tileCoords;
-  debugger;
   Game.display._context.drawImage(
     display._options.tileSet,
     tileCoords[0], tileCoords[1], tw, th,
