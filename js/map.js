@@ -1,4 +1,5 @@
-import { CONFIG, TILES } from './configuration.js';
+import { CONFIG, TILES, MAP_WIDTH, MAP_HEIGHT } from './configuration.js';
+import { getTextMap } from './fileLoader.js';
 
 function prepareTiles() {
 	for (var i in TILES) {
@@ -14,24 +15,30 @@ function prepareTiles() {
 prepareTiles();
 
 export function drawMap (Game, tileSize) { //draw original map
-	for (let x = 0; x < 10; x++) {
-		drawTile(x * tileSize, 0, 1, Game);
-		drawTile(x * tileSize, 9 * tileSize, 1, Game);
-	}
+	getTextMap().then(function(map) {
+			map = map.replace(/[^a-zA-Z0-9]/g, '');
 
-	for (let y = 0; y < 10; y++) {
-		drawTile(0, y * tileSize, 1, Game);
-		drawTile(9 * tileSize, y * tileSize, 1, Game);
-	}
+		for (let x = 0; x < MAP_WIDTH; x++) {
+			for (let y = 0; y < MAP_HEIGHT; y++) {
+				console.log(x, y, x * MAP_WIDTH + y, map.charAt(x * MAP_WIDTH + y))
+	      if(map.charAt(x * MAP_WIDTH + y) === 'a') {
+	        drawTile(x * CONFIG.tileSize, y * CONFIG.tileSize, 1, Game);
+	      }
+	    }
+		}
+	});
+	// for (let x = 0; x < 10; x++) {
+	// 	drawTile(x * tileSize, 0, 1, Game);
+	// 	drawTile(x * tileSize, 9 * tileSize, 1, Game);
+	// }
+	//
+	// for (let y = 0; y < 10; y++) {
+	// 	drawTile(0, y * tileSize, 1, Game);
+	// 	drawTile(9 * tileSize, y * tileSize, 1, Game);
+	// }
 
-	for (let x = 0; x < 10; x++) {
-		for (let y = 0; y < 10; y++) {
-      if(x === y) {
-        drawTile(x * tileSize, y * tileSize, 1, Game);
-      }
-    }
+
 	}
-}
 
 function drawTile(x, y, ch, Game) {
   // TODO move this
