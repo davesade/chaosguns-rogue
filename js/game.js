@@ -1,115 +1,60 @@
-var Game = {
-	TEXT_HEIGHT: 3,
-	STATUS_HEIGHT: 3,
-	MAP_SIZE: new XY(150, 50),
-	GOLD: [255, 220, 120],
-	FISH: "",
+import ROT from 'rot-js';
 
-	scheduler: null,
-	player: null,
-	level: null,
-	display: null,
-	text: null,
-	status: null,
+import { CONFIG, TILES, MAP_WIDTH, MAP_HEIGHT } from './configuration.js';
+import { drawMap } from './map.js';
+import { player } from './player.js';
 
-	engine: null,
-	
-	init: function() {
-		window.addEventListener("load", this);
-		var xhr = new XMLHttpRequest();
-		xhr.open("get", "fish.txt", true);
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) { Game.FISH = xhr.responseText; }
-		}
-		xhr.send();
-	},
+export var Game = {
+    display: null,
+    player: null,
 
-	handleEvent: function(e) {
-		switch (e.type) {
-			case "keypress":
-				window.removeEventListener(e.type, this);
-				document.body.innerHTML = "";
+    init: function() {
+      var Game = this;
 
-				this.player = new Player();
+      this.display = new ROT.Display({
+        width: MAP_WIDTH,
+        height: MAP_HEIGHT,
+        layout: "tile",
+        fontSize: CONFIG.tileSize,
+        tileWidth: CONFIG.tileSize,
+        tileHeight: CONFIG.tileSize,
+    		tileSet: TILES.tileSet
+      });
 
-				var options = {
-					width: this.MAP_SIZE.x,
-					height: this.TEXT_HEIGHT + this.STATUS_HEIGHT + this.MAP_SIZE.y,
-					fontFamily: "droid sans mono, monospace",
-					spacing: 1.1,
-					fg: "#aaa"
-				}
-				this.display = new ROT.Display(options);
-				this.status = new Status(this.display);
+      this.display.getContainer().addEventListener("click", function(event) {
+        console.log('event', event.x, event.y);
+        console.log('Game.display.eventToPosition', Game.display.eventToPosition(event));
+        // var tileCoordinates =  Game.display.eventToPosition(event);
+        // var tile = getTile(event.x, event.y, CONFIG.tileSize);
 
-				this.text = new TextBuffer(this.display);
-				this.text.configure({
-					display: this.display,
-					position: new XY(0, 0),
-					size: new XY(this.MAP_SIZE.x, this.TEXT_HEIGHT)
-				});
-				this.text.clear();
+        // drawTile(Math.floor(event.x / CONFIG.tileSize) * CONFIG.tileSize, Math.floor(event.y / CONFIG.tileSize) * CONFIG.tileSize, 0, Game);
 
-				document.body.appendChild(this.display.getContainer());
-				window.addEventListener("resize", this);
-				this._resize();
+        // drawTile(0, 0, 0, Game);
+        // drawTile(63, 0, 0, Game);
+        // drawTile(31, 31, 0, Game);
 
-				this._help();
-			break;
+        // drawTile(150, 26, 1, Game);
+        // Game.display.draw(event.x, event.y, 'o', '#ef16cc', '#ef16ff');
+      }, true);
 
-			case "resize":
-				this._resize();
-			break;
-			
-			case "load":
-				window.removeEventListener("load", this);
-				this._intro();
-			break;
-		}
-	},
+      document.body.appendChild(this.display.getContainer());
 
-	over: function() {
-		this.engine.lock();
-		this.text.write("You die... %c{#666}(reload the page to start a new game)");
-		this.text.flush();
-	},
-
-	switchLevel: function(level, xy) {
-		if (this.level) { this.level.deactivate(); }
-		this.level = level;
-		this.level.activate();
-		this.level.setBeing(this.player, xy);
-	},
-
-	_intro: function() {
-		window.addEventListener("keypress", this);
-	},
-
-	_help: function() {
-		var help = new Help(true);
-		help.show().then(this._start.bind(this));
-	},
-	
-	_resize: function() {
-		var w = window.innerWidth;
-		var h = window.innerHeight;
-		var fontSize = this.display.computeFontSize(w, h);
-		this.display.setOptions({fontSize:fontSize});
-		
-		var node = this.display.getContainer();
-		node.style.left = Math.round((w-node.offsetWidth)/2) + "px";
-		node.style.top = Math.round((h-node.offsetHeight)/2) + "px";
-	},
-	
-	_start: function() {
-		this.scheduler = new ROT.Scheduler.Speed();
-		this.engine = new ROT.Engine(this.scheduler);
-
-		/* build a level and position a player */
-		var overview = new Level.Overview();
-		this.switchLevel(overview, overview.getCenter());
-		this.engine.start();
-	}
+      // TODO use something else than timeout
+      setTimeout(function() {
+        drawMap(Game, CONFIG.tileSize);
+      }, 100);
+    },
 }
 
-Game.init();
+// Player.prototype._draw = function() {
+//     Game.display.draw(this._x, this._y, "@", "#ff0");
+// }
+
+// function getTile(x, y, tileSize) {
+//   return {
+//     x: Math.floor(x / tileSize),
+//     y: Math.floor(y / tileSize),
+//   };
+// }
+
+window.onload = Game.init;
