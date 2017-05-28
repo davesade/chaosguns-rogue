@@ -2,8 +2,8 @@ import { CONFIG, TILES, MAP_WIDTH, MAP_HEIGHT } from './configuration.js';
 import { getTextMap } from './fileLoader.js';
 
 function prepareTiles() {
-	for (var i in TILES) {
-		var tile = TILES[i];
+	for (let i in TILES) {
+		let tile = TILES[i];
 		if (!tile.tileCoords) continue;
 		tile.id = i;
 		// tile.ch = TILES.tileArray.length;
