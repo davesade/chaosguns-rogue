@@ -8,6 +8,12 @@ class Player {
       this._y = y;
     }
 
+    move(x, y) {
+      this._x = x;
+      this._y = y;
+      this.draw();
+    }
+
     getPosition() {
       return {
         x: this._x,
@@ -16,7 +22,8 @@ class Player {
     }
 
     draw() {
-      draw(this._x, this._y, 1);
+      // TODO Add tile of player
+      draw(this._x, this._y, 'wall');
     }
 }
 

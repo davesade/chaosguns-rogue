@@ -16,16 +16,19 @@ export const TILES = {
 	empty: {
     tileCoords: [ 0, 0 ],
 		walkable: true,
+    bulletProof: false,
 		desc: "Nothing"
 	},
   floor: {
-    tileCoords: [ 3, 0 ],
+    tileCoords: [ 4, 0 ],
 		walkable: true,
+    bulletProof: false,
 		desc: "Floor"
 	},
 	wall: {
     tileCoords: [ 0, 10 ],
 		walkable: false,
+    bulletProof: true,
 		desc: "Wall"
 	},
   tileSet: tileSet,

@@ -22,7 +22,7 @@ class Game {
     });
 
     // init player
-    this._player = new Player(4, 5);
+    this._player = new Player(70, 90);
 
     // init map
     this._map = new Map();
@@ -31,6 +31,12 @@ class Game {
     this._display.getContainer().addEventListener("click", function(event) {
       console.log('event', event.x, event.y);
       console.log('Game.display.eventToPosition', gameInstance._display.eventToPosition(event));
+      gameInstance._map.drawMap();
+
+      // TODO use something else than timeout
+      setTimeout(function() {
+        gameInstance._player.move(event.x, event.y);
+      }, 100);
     }, true);
 
     // append map to the DOM

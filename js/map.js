@@ -22,8 +22,10 @@ class Map {
 			for (let x = 0; x < MAP_WIDTH; x++) {
 				for (let y = 0; y < MAP_HEIGHT; y++) {
 		      if(map.charAt(x * MAP_WIDTH + y) === 'a') {
-		        draw(x * CONFIG.tileSize, y * CONFIG.tileSize, 1);
-		      }
+		        draw(x * CONFIG.tileSize, y * CONFIG.tileSize, 'floor');
+		      } else {
+						draw(x * CONFIG.tileSize, y * CONFIG.tileSize, 'empty');
+					}
 		    }
 			}
 		});
