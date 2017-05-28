@@ -2,7 +2,6 @@ import { chaosGuns } from './game.js';
 import { TILES } from './configuration.js';
 
 function draw(x, y, ch) {
-  // TODO move this
   var w = chaosGuns.getDisplay().getOptions().width;
   var h = chaosGuns.getDisplay().getOptions().height;
   var tw = chaosGuns.getDisplay().getOptions().tileWidth;

@@ -1,7 +1,7 @@
 import ROT from 'rot-js';
 
 import { CONFIG, TILES, MAP_WIDTH, MAP_HEIGHT } from './configuration.js';
-import { drawMap } from './map.js';
+import { Map } from './map.js';
 import { Player } from './player.js';
 
 var chaosGuns;
@@ -24,6 +24,9 @@ class Game {
     // init player
     this._player = new Player(4, 5);
 
+    // init map
+    this._map = new Map();
+
     // register click
     this._display.getContainer().addEventListener("click", function(event) {
       console.log('event', event.x, event.y);
@@ -35,7 +38,7 @@ class Game {
 
     // TODO use something else than timeout
     setTimeout(function() {
-      drawMap(CONFIG.tileSize);
+      gameInstance._map.drawMap();
       gameInstance._player.draw();
     }, 1000);
   }
