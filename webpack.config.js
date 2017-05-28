@@ -7,9 +7,9 @@ module.exports = {
         game: './js/game.js'
     },
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, 'dist'),
         filename: '[name].bundle.js',
-        publicPath: './dist/'
+        publicPath: '/dist/'
     },
     module: {
         rules: [
