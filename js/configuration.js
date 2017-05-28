@@ -1,6 +1,6 @@
 export const CONFIG = {
 	// tileSize: 16,
-  tileSize: 32,
+  tileSize: 16,
 	// Not really correct/reliable, but detecting touch screen is currently impossible
 	touch: (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
 };
@@ -18,8 +18,13 @@ export const TILES = {
 		walkable: true,
 		desc: "Nothing"
 	},
+  floor: {
+    tileCoords: [ 3, 0 ],
+		walkable: true,
+		desc: "Floor"
+	},
 	wall: {
-    tileCoords: [ 0, 13 ],
+    tileCoords: [ 0, 10 ],
 		walkable: false,
 		desc: "Wall"
 	},

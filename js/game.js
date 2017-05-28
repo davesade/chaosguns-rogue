@@ -2,59 +2,51 @@ import ROT from 'rot-js';
 
 import { CONFIG, TILES, MAP_WIDTH, MAP_HEIGHT } from './configuration.js';
 import { drawMap } from './map.js';
-import { player } from './player.js';
+import { Player } from './player.js';
 
-export var Game = {
-    display: null,
-    player: null,
+var chaosGuns;
 
-    init: function() {
-      var Game = this;
+class Game {
+  constructor() {
+    var gameInstance = this;
 
-      this.display = new ROT.Display({
-        width: MAP_WIDTH,
-        height: MAP_HEIGHT,
-        layout: "tile",
-        fontSize: CONFIG.tileSize,
-        tileWidth: CONFIG.tileSize,
-        tileHeight: CONFIG.tileSize,
-    		tileSet: TILES.tileSet
-      });
+    // init map
+    this._display = new ROT.Display({
+      width: MAP_WIDTH,
+      height: MAP_HEIGHT,
+      layout: "tile",
+      fontSize: CONFIG.tileSize,
+      tileWidth: CONFIG.tileSize,
+      tileHeight: CONFIG.tileSize,
+      tileSet: TILES.tileSet
+    });
 
-      this.display.getContainer().addEventListener("click", function(event) {
-        console.log('event', event.x, event.y);
-        console.log('Game.display.eventToPosition', Game.display.eventToPosition(event));
-        // var tileCoordinates =  Game.display.eventToPosition(event);
-        // var tile = getTile(event.x, event.y, CONFIG.tileSize);
+    // init player
+    this._player = new Player(4, 5);
 
-        // drawTile(Math.floor(event.x / CONFIG.tileSize) * CONFIG.tileSize, Math.floor(event.y / CONFIG.tileSize) * CONFIG.tileSize, 0, Game);
+    // register click
+    this._display.getContainer().addEventListener("click", function(event) {
+      console.log('event', event.x, event.y);
+      console.log('Game.display.eventToPosition', gameInstance._display.eventToPosition(event));
+    }, true);
 
-        // drawTile(0, 0, 0, Game);
-        // drawTile(63, 0, 0, Game);
-        // drawTile(31, 31, 0, Game);
+    // append map to the DOM
+    document.body.appendChild(gameInstance._display.getContainer());
 
-        // drawTile(150, 26, 1, Game);
-        // Game.display.draw(event.x, event.y, 'o', '#ef16cc', '#ef16ff');
-      }, true);
+    // TODO use something else than timeout
+    setTimeout(function() {
+      drawMap(CONFIG.tileSize);
+      gameInstance._player.draw();
+    }, 1000);
+  }
 
-      document.body.appendChild(this.display.getContainer());
-
-      // TODO use something else than timeout
-      setTimeout(function() {
-        drawMap(Game, CONFIG.tileSize);
-      }, 100);
-    },
+  getDisplay() {
+    return this._display;
+  }
 }
 
-// Player.prototype._draw = function() {
-//     Game.display.draw(this._x, this._y, "@", "#ff0");
-// }
+window.onload = function() {
+  chaosGuns = new Game();
+}
 
-// function getTile(x, y, tileSize) {
-//   return {
-//     x: Math.floor(x / tileSize),
-//     y: Math.floor(y / tileSize),
-//   };
-// }
-
-window.onload = Game.init;
+export { chaosGuns };
